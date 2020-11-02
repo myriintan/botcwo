@@ -740,7 +740,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             }
             break
         case '!nsfwmenu':
-            if (!isNsfw) return
+            if (isNsfw) return
             client.reply(from, '1. randomHentai\n2. randomNsfwNeko', id)
             break
         case '!igstalk':
@@ -765,7 +765,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             client.sendFileFromUrl(from, animek.thumb, 'dewabatch.jpg', res_animek, id)
             break
         case '!nh':
-            if (!isOwner) return
+            if (isOwner) return
             //if (isGroupMsg) return client.reply(from, 'Sorry this command for private chat only!', id)
             if (args.length === 2) {
                 const nuklir = body.split(' ')[1]
@@ -889,7 +889,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             }
             break
         case '!linkgroup':
-            if (!isBotGroupAdmins) return client.reply(from, 'Perintah ini hanya bisa di gunakan ketika bot menjadi admin', id)
+            if (isBotGroupAdmins) return client.reply(from, 'Perintah ini hanya bisa di gunakan ketika bot menjadi admin', id)
             if (isGroupMsg) {
                 const inviteLink = await client.getGroupInviteLink(groupId);
                 client.sendLinkWithAutoPreview(from, inviteLink, `\nLink group *${name}*`)
@@ -898,7 +898,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             }
             break
         case '!bc':
-            if (!isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot!', id)
+            if (isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot!', id)
             let msg = body.slice(4)
             const chatz = await client.getAllChatIds()
             for (let ids of chatz) {
@@ -993,7 +993,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             client.reply(from, 'Succes leave all group!', id)
             break
         case '!clearall':
-            if (!isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
+            if (isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
             const allChatz = await client.getAllChats()
             for (let dchat of allChatz) {
                 await client.deleteChat(dchat.id)
