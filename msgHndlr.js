@@ -33,7 +33,7 @@ module.exports = msgHandler = async (client, message) => {
         const args =  commands.split(' ')
 
         const msgs = (message) => {
-            if (command.startsWith('#')) {
+            if (command.startsWith('!')) {
                 if (message.length >= 10){
                     return `${message.substr(0, 15)}`
                 }else{
@@ -83,7 +83,7 @@ module.exports = msgHandler = async (client, message) => {
         const groupAdmins = isGroupMsg ? await client.getGroupAdmins(groupId) : ''
         const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
         const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
-        const ownerNumber = '6285349607186s@c.us'
+        const ownerNumber = '085349607186s@c.us'
         const isOwner = sender.id === ownerNumber
         const isBlocked = blockNumber.includes(sender.id)
         const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
@@ -898,7 +898,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             }
             break
         case '!bc':
-            if (isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot!', id)
+            if (ownerNumber) return client.reply(from, 'Perintah ini hanya untuk Owner bot!', id)
             let msg = body.slice(4)
             const chatz = await client.getAllChatIds()
             for (let ids of chatz) {
@@ -983,7 +983,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             client.reply(from, 'Succes kick all member', id)
             break
         case '!leaveall':
-            if (!isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
+            if (ownerNumber) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
             const allChats = await client.getAllChatIds()
             const allGroups = await client.getAllGroups()
             for (let gclist of allGroups) {
@@ -993,7 +993,7 @@ Contoh Penggunaan: ͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
             client.reply(from, 'Succes leave all group!', id)
             break
         case '!clearall':
-            if (isOwner) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
+            if (ownerNumber) return client.reply(from, 'Perintah ini hanya untuk Owner bot', id)
             const allChatz = await client.getAllChats()
             for (let dchat of allChatz) {
                 await client.deleteChat(dchat.id)
